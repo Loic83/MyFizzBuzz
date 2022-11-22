@@ -11,7 +11,9 @@ import com.example.myfizzbuzz.R
 import com.example.myfizzbuzz.presentation.adapter.FormListAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import domain.model.ResultEntity
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 import presentation.viewmodel.ListViewModel
 
@@ -50,7 +52,11 @@ class ListActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        viewModel.deleteResults()
-    }
+        lifecycleScope.launch {
+            withContext( Dispatchers.IO) {
+                viewModel.deleteResults()
+            }
+        }
 
+    }
 }

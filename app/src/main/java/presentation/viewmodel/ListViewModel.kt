@@ -13,13 +13,9 @@ class ListViewModel @Inject constructor(
     private val resultUseCases: ResultUseCases
 ): ViewModel() {
 
-    fun deleteResults () {
-        viewModelScope.launch {
-            resultUseCases.deleteResults
-        }
-    }
-
     val results: GetResults = resultUseCases.getResults
 
-
+    suspend fun deleteResults () {
+        resultUseCases.deleteResults.invoke()
+    }
 }

@@ -8,4 +8,6 @@
     <string name="valider">Valider</string>
     <string name="champ_manquant">Un champ n\'est pas rempli, veuillez corriger</string>
     <string name="limit_depasse">Vous avez dépassé la limite</string>
+    <string name="infos_saisie">Vous devez remplir tous les champs pour valider et mettre des nombres inférieurs à 1 000 000</string>
+    <string name="saisie_a_refaire">Veuillez remplir les données comme indiqué</string>
 </resources>

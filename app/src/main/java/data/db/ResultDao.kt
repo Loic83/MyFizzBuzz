@@ -14,6 +14,6 @@ interface ResultDao {
     suspend fun insertResult(note: ResultEntity)
 
     @Query("DELETE FROM ResultEntity")
-    suspend fun deleteAllResults()
+    fun deleteAllResults()
 
 }
