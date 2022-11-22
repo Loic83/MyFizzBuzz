@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvInt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/int1"
+        android:textAlignment="center"
+        android:layout_margin="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewInt2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></TextView>
+
+    <EditText
+        android:id="@+id/editTextInt1"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="5dp"
+        android:inputType="number"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tvInt1"
+        app:layout_constraintBottom_toTopOf="@+id/editTextInt2"
+        app:layout_constraintTop_toTopOf="parent"></EditText>
+
+    <TextView
+        android:id="@+id/textViewInt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/int2"
+        android:layout_margin="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewLimit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextInt1"></TextView>
+
+    <EditText
+        android:id="@+id/editTextInt2"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textViewInt2"
+        app:layout_constraintTop_toBottomOf="@+id/editTextInt1"></EditText>
+
+    <TextView
+        android:id="@+id/textViewLimit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/limit"
+        android:layout_margin="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewStr1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextInt2"></TextView>
+
+    <EditText
+        android:id="@+id/editTextLimit"
+        android:layout_width="200dp"
+        android:inputType="number"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="5dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textViewLimit"
+        app:layout_constraintTop_toBottomOf="@+id/editTextInt2"></EditText>
+
+    <TextView
+        android:id="@+id/textViewStr1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/string1"
+        android:layout_margin="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewStr2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextLimit"></TextView>
+
+    <EditText
+        android:id="@+id/editTextStr1"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="5dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textViewStr1"
+        app:layout_constraintTop_toBottomOf="@+id/editTextLimit"></EditText>
+
+    <TextView
+        android:id="@+id/textViewStr2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/string2"
+        android:layout_margin="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextStr2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextStr1"></TextView>
+
+    <EditText
+        android:id="@+id/editTextStr2"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textViewStr2"
+        app:layout_constraintTop_toBottomOf="@+id/editTextStr1"></EditText>
+
+    <Button
+        android:id="@+id/btn_valider"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/valider"
+        android:layout_margin="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/editTextStr2"></Button>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

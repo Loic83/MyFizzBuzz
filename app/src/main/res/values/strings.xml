@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">MyFizzBuzz</string>
+    <string name="string1">String 1 : </string>
+    <string name="string2">String 2 : </string>
+    <string name="int1">Int 1 : </string>
+    <string name="int2">Int 2 : </string>
+    <string name="limit">Limit :</string>
+    <string name="valider">Valider</string>
+    <string name="champ_manquant">Un champ n\'est pas rempli, veuillez corriger</string>
+    <string name="limit_depasse">Vous avez dépassé la limite</string>
+</resources>
