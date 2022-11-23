@@ -4,7 +4,7 @@ import domain.model.Input
 import domain.model.InvalidInputException
 import domain.model.ResultEntity
 import domain.repository.ResultRepository
-import domain.util.calculation
+import domain.util.Calculation
 
 class AddResult (private val repository: ResultRepository) {
 
@@ -20,7 +20,7 @@ class AddResult (private val repository: ResultRepository) {
             throw InvalidInputException("Vous avez dépassé la limite")
         }
 
-        val arrayResult = calculation.calculResult(input)
+        val arrayResult = Calculation.calculResult(input)
 
         for (i in 0 until arrayResult.size){
             repository.insertResult(ResultEntity(arrayResult[i].first,arrayResult[i].second))

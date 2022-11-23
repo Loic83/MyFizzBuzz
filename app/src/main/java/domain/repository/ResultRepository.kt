@@ -7,7 +7,7 @@ interface ResultRepository {
 
     suspend fun insertResult(result: ResultEntity)
 
-    suspend fun getResults(): LiveData<List<ResultEntity>>
+    suspend fun getResults(limit: Int): LiveData<List<ResultEntity>>
 
     suspend fun deleteAllResults()
 

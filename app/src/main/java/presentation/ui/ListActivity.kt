@@ -28,6 +28,8 @@ class ListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
 
+        val limit = intent.getStringExtra("limit")!!.toInt()
+
         results = mutableListOf()
         resultsAdapter = FormListAdapter(results)
 
@@ -40,7 +42,7 @@ class ListActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this)[ListViewModel::class.java]
         lifecycleScope.launch {
-            viewModel.results.invoke().observe(this@ListActivity, Observer {newResults -> updateResults(newResults!!)})
+            viewModel.results.invoke(limit).observe(this@ListActivity, Observer {newResults -> updateResults(newResults!!)})
         }
     }
 
@@ -52,11 +54,6 @@ class ListActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        lifecycleScope.launch {
-            withContext( Dispatchers.IO) {
-                viewModel.deleteResults()
-            }
-        }
-
+        viewModel.deleteResults()
     }
 }

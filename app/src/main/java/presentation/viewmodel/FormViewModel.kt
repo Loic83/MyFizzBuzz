@@ -1,9 +1,7 @@
 package presentation.viewmodel
 
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.lifecycle.HiltViewModel
 import domain.model.Input
 import domain.model.InvalidInputException
@@ -18,12 +16,14 @@ class FormViewModel @Inject constructor(
     private val resultUseCases: ResultUseCases
 ) : ViewModel() {
 
-    fun addNote (input: Input) {
+    fun addResult (input: Input) {
         viewModelScope.launch {
-            try {
-                resultUseCases.addResult (input)
-            } catch (e: InvalidInputException) {
+            withContext(Dispatchers.IO) {
+                try {
+                    resultUseCases.addResult(input)
+                } catch (e: InvalidInputException) {
 
+                }
             }
         }
     }

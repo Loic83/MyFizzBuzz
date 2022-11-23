@@ -2,7 +2,7 @@ package domain.util
 
 import domain.model.Input
 
-class calculation () {
+class Calculation () {
 
     companion object {
         fun calculResult(input : Input): Array<Pair<Int, String>> {

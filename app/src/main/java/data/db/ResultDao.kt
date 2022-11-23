@@ -7,11 +7,11 @@ import domain.model.ResultEntity
 @Dao
 interface ResultDao {
 
-    @Query("SELECT * FROM ResultEntity")
-    fun getResults(): LiveData<List<ResultEntity>>
+    @Query("SELECT * FROM ResultEntity LIMIT :limit")
+    fun getResults(limit : Int): LiveData<List<ResultEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertResult(note: ResultEntity)
+    suspend fun insertResult(result: ResultEntity)
 
     @Query("DELETE FROM ResultEntity")
     fun deleteAllResults()

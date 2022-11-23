@@ -13,8 +13,8 @@ class ResultRepositoryImpl(
         return dao.insertResult(result)
     }
 
-    override suspend fun getResults(): LiveData<List<ResultEntity>> {
-        return dao.getResults()
+    override suspend fun getResults(limit: Int): LiveData<List<ResultEntity>> {
+        return dao.getResults(limit)
     }
 
     override suspend fun deleteAllResults() {

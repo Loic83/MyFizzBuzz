@@ -3,17 +3,15 @@ package presentation.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import android.view.View
+import android.widget.*
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.myfizzbuzz.R
 import dagger.hilt.android.AndroidEntryPoint
 import domain.model.Input
-import kotlinx.coroutines.Dispatchers
+import domain.model.InvalidInputException
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import presentation.viewmodel.FormViewModel
 
 
@@ -33,6 +31,8 @@ class FormActivity : AppCompatActivity() {
         val editStr1: EditText = findViewById(R.id.editTextStr1)
         val editStr2: EditText = findViewById(R.id.editTextStr2)
         val btnValider: Button = findViewById(R.id.btn_valider)
+        val progressBar : ProgressBar = findViewById(R.id.progress)
+        val tvCalcul : TextView = findViewById(R.id.tv_calcul)
 
         btnValider.setOnClickListener {
            if ( editStr1.text.isBlank() || editStr2.text.isBlank() ||
@@ -46,12 +46,30 @@ class FormActivity : AppCompatActivity() {
                    editLimit.text.toString().toInt(),
                    editInt1.text.toString().toInt(),
                    editInt2.text.toString().toInt())
+
+               tvCalcul.visibility = View.VISIBLE
+               progressBar.visibility = View.VISIBLE
+               progressBar.setProgress(50,true)
+
                viewModel = ViewModelProvider(this)[FormViewModel::class.java]
-               viewModel.addNote(input)
 
-               startActivity(Intent(this,ListActivity::class.java))
+               val job = lifecycleScope.launch {
+                       try {
+                           viewModel.addResult(input)
+                       } catch (e: InvalidInputException) {
+
+                       }
+                    }
+
+               if(job.isCompleted) {
+                   progressBar.visibility = View.GONE
+                   tvCalcul.visibility = View.GONE
+
+                   val intent = Intent(this,ListActivity::class.java)
+                   intent.putExtra("limit",editLimit.text.toString())
+                   startActivity(intent)
+               }
            }
-
         }
     }
 }
