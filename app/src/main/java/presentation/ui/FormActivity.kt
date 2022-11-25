@@ -35,21 +35,22 @@ class FormActivity : AppCompatActivity() {
         val tvCalcul : TextView = findViewById(R.id.tv_calcul)
 
         btnValider.setOnClickListener {
-           if ( editStr1.text.isBlank() || editStr2.text.isBlank() ||
+           
+            if ( editStr1.text.isBlank() || editStr2.text.isBlank() ||
                editLimit.text.toString().isBlank() || editInt1.text.toString().isBlank() ||
-               editInt2.text.toString().isBlank()  || editLimit.text.toString().toLong() > 1000000
-               || editInt1.text.toString().toLong() > 1000000 || editInt2.text.toString().toLong() > 1000000) {
+               editInt2.text.toString().isBlank()  || editLimit.text.toString().toLong() > 50000
+               || editInt1.text.toString().toLong() > 50000 || editInt2.text.toString().toLong() > 50000) {
                Toast.makeText(this,getString(R.string.saisie_a_refaire),Toast.LENGTH_SHORT).show()
            } else {
+               tvCalcul.visibility = View.VISIBLE
+               progressBar.visibility = View.VISIBLE
+               progressBar.setProgress(50,true)
+
                val input = Input(editStr1.text.toString(),
                    editStr2.text.toString(),
                    editLimit.text.toString().toInt(),
                    editInt1.text.toString().toInt(),
                    editInt2.text.toString().toInt())
-
-               tvCalcul.visibility = View.VISIBLE
-               progressBar.visibility = View.VISIBLE
-               progressBar.setProgress(50,true)
 
                viewModel = ViewModelProvider(this)[FormViewModel::class.java]
 
