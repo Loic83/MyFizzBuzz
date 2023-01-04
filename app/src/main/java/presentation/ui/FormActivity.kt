@@ -3,6 +3,7 @@ package presentation.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.lifecycle.ViewModelProvider
@@ -35,11 +36,18 @@ class FormActivity : AppCompatActivity() {
         val tvCalcul : TextView = findViewById(R.id.tv_calcul)
 
         btnValider.setOnClickListener {
-           
-            if ( editStr1.text.isBlank() || editStr2.text.isBlank() ||
-               editLimit.text.toString().isBlank() || editInt1.text.toString().isBlank() ||
-               editInt2.text.toString().isBlank()  || editLimit.text.toString().toLong() > 50000
-               || editInt1.text.toString().toLong() > 50000 || editInt2.text.toString().toLong() > 50000) {
+
+            val str1 : String = editStr1.text.toString()
+            val str2 : String = editStr2.text.toString()
+            val int1 : String = editInt1.text.toString()
+            val int2 : String = editInt2.text.toString()
+            val limit : String = editLimit.text.toString()
+
+            viewModel = ViewModelProvider(this)[FormViewModel::class.java]
+
+            val validation : Boolean = viewModel.onValidation(str1,str2, int1, int2, limit)
+
+            if (!validation) {
                Toast.makeText(this,getString(R.string.saisie_a_refaire),Toast.LENGTH_SHORT).show()
            } else {
                tvCalcul.visibility = View.VISIBLE
@@ -51,8 +59,6 @@ class FormActivity : AppCompatActivity() {
                    editLimit.text.toString().toInt(),
                    editInt1.text.toString().toInt(),
                    editInt2.text.toString().toInt())
-
-               viewModel = ViewModelProvider(this)[FormViewModel::class.java]
 
                val job = lifecycleScope.launch {
                        try {

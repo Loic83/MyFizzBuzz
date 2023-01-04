@@ -27,4 +27,12 @@ class FormViewModel @Inject constructor(
             }
         }
     }
+
+    fun onValidation(str1 : String, str2 : String, int1 : String, int2 : String, limit : String): Boolean {
+
+        return !(str1.isBlank() || str2.isBlank() || limit.isBlank() || int1.isBlank() ||
+                int2.isBlank()  || limit.toLong() > 50000 || int1.toLong() > 50000
+                || int2.toLong() > 50000)
+
+    }
 }
